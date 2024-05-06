@@ -2,6 +2,20 @@
 
 # Command to run log2timeline.py
 
+# Check if log2timeline.py is installed
+if ! command -v log2timeline.py &> /dev/null; then
+    echo "[!] log2timeline.py is not installed. Installing..."
+
+    # Install plaso-tools
+    sudo add-apt-repository universe -y
+    sudo add-apt-repository ppa:gift/stable -y 
+    sudo apt-get update 
+    sudo apt-get install plaso-tools -y
+    echo "[+] log2timeline.py installed successfully."
+else
+    echo "[+] log2timeline.py is installed on this system."
+fi
+
 echo "[+] running log2timeline now..."
 log2timeline.py --storage-file timeline.plaso /path/to/artifacts
 
